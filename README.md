@@ -59,6 +59,7 @@ cccccccccccc  web-1    1.20%   64MiB / 8GiB        0.78%  2.1GB / 2.3GB  100MB /
 ...
 
 # took 4s, load average at start: 1.50 1.20 1.00 (4 CPUs)
+# memory at start: 3.1Gi used of 8.0Gi, 4.6Gi available, swap 0B used of 2.0Gi
 ```
 
 ## Notes
@@ -67,8 +68,8 @@ cccccccccccc  web-1    1.20%   64MiB / 8GiB        0.78%  2.1GB / 2.3GB  100MB /
   to each container's own limit.
 - BLOCK I/O is cumulative since container start, so `-s io` shows which
   containers did the most disk I/O overall, not which are busiest right now.
-- The load average is read before the script starts its own `docker stats`
-  calls, so it isn't inflated by the script itself.
+- Load average and system memory are read before the script starts its own
+  `docker stats` calls, so they aren't affected by the script itself.
 - Containers that still return `--` after all retries are listed at the bottom.
 
 ## License
