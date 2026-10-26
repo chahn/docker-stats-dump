@@ -48,9 +48,7 @@ esac
 # Take time and load at start, before our own docker calls add load
 START=$(date +%s)
 LOAD="$(cut -d' ' -f1-3 /proc/loadavg) ($(nproc) CPUs)"
-MEM=$(free -h | awk '
-	/^Mem:/  { printf "%s used of %s, %s available", $3, $2, $7 }
-	/^Swap:/ { printf ", swap %s used of %s", $3, $2 }')
+MEM=$(free -h)
 OUT="${1:-docker-stats-$(date -d "@$START" +%Y%m%d-%H%M%S).txt}"
 export PARALLEL="${PARALLEL:-8}"
 export RETRIES="${RETRIES:-5}"
@@ -107,7 +105,9 @@ docker ps -q | awk '{printf "%04d %s\n", NR, $1}' |
 	fi
 	echo
 	echo "# took $(($(date +%s) - START))s, load average at start: $LOAD"
-	echo "# memory at start: $MEM"
+	echo
+	echo "# memory at start:"
+	echo "$MEM"
 } >"$OUT"
 
 cat "$OUT"

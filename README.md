@@ -59,7 +59,11 @@ cccccccccccc  web-1    1.20%   64MiB / 8GiB        0.78%  2.1GB / 2.3GB  100MB /
 ...
 
 # took 4s, load average at start: 1.50 1.20 1.00 (4 CPUs)
-# memory at start: 3.1Gi used of 8.0Gi, 4.6Gi available, swap 0B used of 2.0Gi
+
+# memory at start:
+               total        used        free      shared  buff/cache   available
+Mem:           8.0Gi       3.1Gi       1.2Gi        12Mi       3.7Gi       4.6Gi
+Swap:          2.0Gi          0B       2.0Gi
 ```
 
 ## Notes
